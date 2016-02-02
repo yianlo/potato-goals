@@ -1,0 +1,15 @@
+<% action = (type == :user) ? users_url : session_url %>
+<% submit_text = (type == :user) ? "Sign Up" : "Sign In" %>
+
+
+<form action="<%= action %>" method="post">
+  <%= auth_token_input %>
+
+  <label for="Username">Username</label>
+  <input type="text" name="user[username]" id = "Username">
+
+  <label for="Password">Password</label>
+  <input type="password" name="user[password]" id = "Password">
+
+  <input type="submit" value="<%= submit_text %>">
+</form>

@@ -7,6 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if signed_in? %>
+  <%= current_user.username %>
+  <%= button_to "Sign Out", session_url, method: :delete, id: "Sign Out" %>
+<% else %>
+  <%= link_to "Sign In", new_session_url unless request.original_url == new_session_url %>
+  <%= link_to "Sign Up", new_user_url unless request.original_url == new_user_url%>
+<% end %>
+<br>
+<%= render "layouts/errors" %>
 
 <%= yield %>
 

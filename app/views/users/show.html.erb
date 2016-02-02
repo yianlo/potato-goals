@@ -1,0 +1,12 @@
+<h1>Do the things. Goals!</h1>
+
+<% @user.goals.each do |goal| %>
+  <%= goal.content %> <br>
+  <% if @user == current_user %>
+    <%= link_to "Edit Goal", edit_goal_url(goal) %> <%= "    " %> <%= link_to "Delete Goal", goals_url(goal), method: :delete %> <br>
+  <% end %>
+<% end %>
+<br>
+<% if @user == current_user %>
+  <%= link_to "New Goal", new_goal_url %>
+<% end %>
