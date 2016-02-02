@@ -3,13 +3,13 @@ require 'rails_helper'
 feature "display goals index for each user" do
 
   before(:all) { FactoryGirl.reload }
-  let(:cur_user) { FactoryGirl.create(:user) }
+  # let(:cur_user) { FactoryGirl.create(:user) }
 
   before(:each) do
     #potato1
-    a = sign_up_potato(cur_user)
-    FactoryGirl.create(:goal, user_id: a.id)
-    visit user_url(a)
+    @cur_user = sign_up_potato(User.new({username: "potato", password: "123456"}))
+    FactoryGirl.create(:goal, user_id: @cur_user.id)
+    visit user_url(@cur_user)
   end
 
   scenario "show goals" do
@@ -18,8 +18,9 @@ feature "display goals index for each user" do
 
   feature "when signed in as author" do
     scenario "show private goals" do
-      FactoryGirl.create(:private_goal)
-      visit user_url(cur_user)
+      FactoryGirl.create(:private_goal, user_id: @cur_user.id)
+      visit user_url(@cur_user)
+
       expect(page).to have_content("I secretly loathe russets")
     end
 

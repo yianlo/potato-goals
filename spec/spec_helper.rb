@@ -22,7 +22,7 @@ def sign_up_potato(user)
   fill_in 'Username', :with => user.username
   fill_in 'Password', :with => user.password
   click_on "Sign Up"
-  user
+  User.find_by_username(user.username)
 end
 
 def sign_in_potato(user)

@@ -10,3 +10,6 @@
 <% if @user == current_user %>
   <%= link_to "New Goal", new_goal_url %>
 <% end %>
+
+<%= current_user.attributes %>
+<%= @user.attributes %>
